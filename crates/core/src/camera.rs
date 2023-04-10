@@ -138,6 +138,36 @@ pub fn screen_ray(world: &World, camera: EntityId, mouse_origin: Vec2) -> Result
     Ok(Ray::new(camera_mouse_origin, camera_mouse_dir))
 }
 
+//##################################################
+// these will be modified and exposed in /wasm in the camera module
+// pub fn center_screen_ray(&self) -> Ray {
+//     self.screen_ray(Vec2::ZERO)
+// }
+// pub fn screen_ray(&self, clip_space_pos: Vec2) -> Ray {
+//     let inv_proj_view = self.proj_view().unwrap_or(Mat4::IDENTITY).inverse();
+//     let a = inv_proj_view.project_point3(clip_space_pos.extend(1.));
+//     let b = inv_proj_view.project_point3(clip_space_pos.extend(0.9));
+//     let origin = a;
+//     let dir = (b - a).normalize();
+//     Ray { origin, dir }
+// }
+// pub fn clip_to_world_space(&self, p: Vec3) -> Vec3 {
+//     let inv_proj_view = self.proj_view().unwrap_or(Mat4::IDENTITY).inverse();
+//     inv_proj_view.project_point3(p)
+// }
+// pub fn world_to_clip_space(&self, p: Vec3) -> Vec3 {
+//     let proj_view = self.proj_view().unwrap_or(Mat4::IDENTITY);
+//     proj_view.project_point3(p)
+// }
+// pub fn clip_to_screen_space(&self, p: Vec3) -> Vec2 {
+//     let screen_size = *self.world.resource(window_physical_size());
+//     interpolate(p.xy(), vec2(-1., 1.), vec2(1., -1.), Vec2::ZERO, screen_size.as_vec2())
+// }
+// pub fn world_to_screen_space(&self, p: Vec3) -> Vec2 {
+//     self.clip_to_screen_space(self.world_to_clip_space(p))
+// }
+//##################################################
+
 pub fn get_active_camera(world: &World, scene: Component<()>, user_id: Option<&String>) -> Option<EntityId> {
     query((scene, active_camera()))
         .iter(world, None)

@@ -1,0 +1,5 @@
+default interface camera {
+    use pkg.types.{ray}
+
+    screen-ray: func() -> ray
+}

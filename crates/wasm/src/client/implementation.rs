@@ -9,6 +9,11 @@ use crate::shared::{
     wit,
 };
 
+use ambient_core::camera;
+
+use ambient_std::shapes::Ray;
+use glam::Vec3;
+
 impl wit::client_message::Host for Bindings {
     fn send(
         &mut self,
@@ -60,5 +65,14 @@ impl wit::client_player::Host for Bindings {
             .resource(player_prev_raw_input())
             .clone()
             .into_bindgen())
+    }
+}
+impl wit::camera::Host for Bindings {
+    fn screen_ray(&mut self) -> anyhow::Result<wit::types::Ray> {
+        let test = Ray {
+            origin: Vec3::ONE,
+            dir: Vec3::ZERO,
+        };
+        Ok(test.into_bindgen())
     }
 }

@@ -15,6 +15,11 @@ default interface types {
         z: float32,
     }
 
+    record ray {
+        origin: vec3,
+        dir: vec3,
+    }
+
     record vec4 {
         x: float32,
         y: float32,
